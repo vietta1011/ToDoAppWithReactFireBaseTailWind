@@ -65,6 +65,7 @@ function App() {
   // Delete todo
   const deleteTodo = async (id) => {
     await deleteDoc(doc(db, "todos", id));
+    toast.success("Xong việc rồi giỏi quá");
   };
 
   const handleKeyDown = (event) => {
