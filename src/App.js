@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import Todo from "./Todo";
 import { db } from "./firebase";
@@ -27,6 +27,8 @@ const style = {
 function App() {
   const [todos, setTodos] = useState([]);
   const [input, setInput] = useState("");
+  const inputRef = useRef();
+
   // Create todo
   const createTodo = async (e) => {
     e.preventDefault();
@@ -40,6 +42,7 @@ function App() {
     });
     setInput("");
     toast.success("Làm sớm xong sớm nha");
+    inputRef.current.focus();
   };
 
   // Read todo from firebase
@@ -81,6 +84,7 @@ function App() {
         <h3 className={style.heading}>Đống việc dang dở của Mai Linh</h3>
         <form onSubmit={createTodo} className={style.form}>
           <input
+            ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className={style.input}
