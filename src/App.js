@@ -15,13 +15,14 @@ import "../node_modules/react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 
 const style = {
-  bg: `h-screen w-screen p-4 bg-gradient-to-r from-[#2F80ED] to-[#1CB5E0]`,
+  bg: `min-h-screen w-screen p-4 bg-gradient-to-r from-[#2F80ED] to-[#1CB5E0]`,
   container: `bg-slate-100 max-w-[500px] w-full m-auto rounded-md shadow xl p-4`,
   heading: `text-2xl font-bold text-center text-gray-800 p-2`,
   form: `flex justify-between`,
   input: `border p-2 w-full text-xl`,
   button: `border p-4 ml-2 bg-purple-500 text-slate-100`,
   count: `text-center p-2`,
+  footer: `flex justify-center items-center text-[#e6f4f1] italic text-[25px] mt-7`,
 };
 
 function App() {
@@ -106,7 +107,9 @@ function App() {
             />
           ))}
         </ul>
-        {todos.filter((todo) => !todo.completed).length === 0 ? null : (
+        {todos.filter((todo) => !todo.completed).length === 0 ? (
+          <p className={style.count}>Hiện tại không có việc gì nè</p>
+        ) : (
           <p className={style.count}>{`Bé còn ${
             todos.filter((todo) => !todo.completed).length
           } việc nữa á`}</p>
@@ -124,7 +127,9 @@ function App() {
         pauseOnHover
         theme="dark"
       />
-      ;
+      <div className={style.footer}>
+        <h1>Sản phẩm này thuộc về Việt nhưng Việt thuộc về Linh rồi</h1>
+      </div>
     </div>
   );
 }
